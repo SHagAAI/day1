@@ -1,6 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 // FOOBAR EXERCISE
 
+using ConsoleApp1;
+
 int maxNum = 50;
 
 var numbers = Enumerable.Range(1, maxNum);
@@ -55,35 +57,76 @@ var numbers = Enumerable.Range(1, maxNum);
 
 
 
-List<string> myStack = [];
+// List<string> myStack = [];
 
-void Type(string text)
+// void Type(string text)
+// {
+//     Console.WriteLine($"Typed [{text}] ");
+//     myStack.Add(text);
+// }
+
+// void Undo()
+// {
+
+//     if (myStack.Count != 0)
+//     {
+
+//         var text = myStack[myStack.Count - 1];
+//         myStack.RemoveAt(myStack.Count - 1);
+//         Console.WriteLine($"Undid [{text}] ");
+//         return;
+//     }
+
+//     Console.WriteLine("Stack Empty ");
+// }
+
+
+// Type("foo");
+// Type("bar");
+// Type("sala");
+// Type("tiga");
+
+// Undo();
+// Undo();
+// Undo();
+
+
+List<CustomNode> myListCsNode = [];
+void Append(int num)
 {
-    Console.WriteLine($"Typed [{text}] ");
-    myStack.Add(text);
-}
-
-void Undo()
-{
-
-    if (myStack.Count != 0)
+    if (myListCsNode.Count == 0)
     {
-
-        var text = myStack[myStack.Count - 1];
-        myStack.RemoveAt(myStack.Count - 1);
-        Console.WriteLine($"Undid [{text}] ");
+        
+        myListCsNode.Add(new CustomNode(num));
+        Console.WriteLine($"Appended {num}");
         return;
     }
 
-    Console.WriteLine("Stack Empty ");
+    CustomNode csNode = new CustomNode(num);
+    myListCsNode[myListCsNode.Count-1].next = csNode;
+    myListCsNode.Add(csNode);
+    Console.WriteLine($"Appended {num}");
 }
 
 
-Type("foo");
-Type("bar");
-Type("sala");
-Type("tiga");
+void Print()
+{
+    foreach (var item in myListCsNode)
+    {
+        if (item.next is not null)
+        {
+            Console.Write($"{item.val} -> ");
+            continue;
+        }
+        Console.Write($"{item.val}");
 
-Undo();
-Undo();
-Undo();
+    }
+}
+
+Append(5);
+Append(50);
+Append(10);
+Append(3);
+Append(6);
+Append(9);
+Print();
