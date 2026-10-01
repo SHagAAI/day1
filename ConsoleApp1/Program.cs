@@ -96,14 +96,14 @@ void Append(int num)
 {
     if (myListCsNode.Count == 0)
     {
-        
+
         myListCsNode.Add(new CustomNode(num));
         Console.WriteLine($"Appended {num}");
         return;
     }
 
     CustomNode csNode = new CustomNode(num);
-    myListCsNode[myListCsNode.Count-1].next = csNode;
+    myListCsNode[myListCsNode.Count - 1].next = csNode;
     myListCsNode.Add(csNode);
     Console.WriteLine($"Appended {num}");
 }
@@ -123,10 +123,38 @@ void Print()
     }
 }
 
-Append(5);
-Append(50);
-Append(10);
-Append(3);
-Append(6);
-Append(9);
-Print();
+// Append(5);
+// Append(50);
+// Append(10);
+// Append(3);
+// Append(6);
+// Append(9);
+// Print();
+
+
+List<int> buffer = [];
+void Log(int number)
+{
+    if (buffer.Count == 3)
+
+    {
+        Console.WriteLine("Buffer Full");
+        return;
+    }
+    buffer.Add(number);
+    
+}
+
+void Read()
+{
+    Console.WriteLine($"Read [{buffer[0]}]");
+    buffer.RemoveAt(0);
+}
+
+
+Log(4);
+Log(3);
+Log(2);
+Log(1);
+Read();
+Read();
