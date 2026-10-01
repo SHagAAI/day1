@@ -31,38 +31,59 @@ var numbers = Enumerable.Range(1, maxNum);
 
 
 // QUEUE EXERCISE
-List<int> queue = [];
-void Enqueue(int number)
+// List<int> queue = [];
+// void Enqueue(int number)
+// {
+//     Console.WriteLine($"Queued {number}");
+//     queue.Add(number);
+// }
+
+// void Process()
+// {
+//     if (queue.Count == 0)
+//     {
+//         Console.WriteLine("Queue is empty");
+//         return;
+//     }
+
+//     Console.WriteLine($"Processed {queue[0]}");
+//     queue.RemoveAt(0);
+
+// }
+
+// Enqueue(4);
+
+
+
+List<string> myStack = [];
+
+void Type(string text)
 {
-    Console.WriteLine($"Queued {number}");
-    queue.Add(number);
+    Console.WriteLine($"Typed [{text}] ");
+    myStack.Add(text);
 }
 
-void Process()
+void Undo()
 {
-    if (queue.Count == 0)
+
+    if (myStack.Count != 0)
     {
-        Console.WriteLine("Queue is empty");
+
+        var text = myStack[myStack.Count - 1];
+        myStack.RemoveAt(myStack.Count - 1);
+        Console.WriteLine($"Undid [{text}] ");
         return;
     }
 
-    Console.WriteLine($"Processed {queue[0]}");
-    queue.RemoveAt(0);
-
+    Console.WriteLine("Stack Empty ");
 }
 
-Enqueue(4);
-Enqueue(5);
-Enqueue(9);
-Enqueue(3);
-Process();
-Process();
-Process();
-Process();
-Enqueue(7);
-Enqueue(99);
-Enqueue(89);
-Process();
-Process();
-Process();
-Process();
+
+Type("foo");
+Type("bar");
+Type("sala");
+Type("tiga");
+
+Undo();
+Undo();
+Undo();
